@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phasmo Tracker Tool</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+:root{
+--bg:#0b0f14;
+--card:#161b22;
+--btn:#21262d;
+--on:#238636;
+--off:#da3633;
+}
+
+body{
+margin:0;
+background:var(--bg);
+color:#e6edf3;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+min-height:100vh;
+overflow-y:auto;
+-webkit-tap-highlight-color:transparent;
+}
+
+.header{
+padding:env(safe-area-inset-top) 12px 12px;
+background:var(--card);
+text-align:center;
+font-weight:bold;
+}
+
+.section{padding:10px;}
+
+.filters{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+min-height:60px;
+}
+
+button{
+flex:1 1 30%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:var(--btn);
+color:#fff;
+font-size:16px;
+min-height:44px;
+}
+
+button:active{transform:scale(0.95);}
+.include{background:var(--on);}
+.exclude{background:var(--off);}
+
+input{
+width:100%;
+padding:12px;
+font-size:16px;
+border-radius:10px;
+border:none;
+margin-top:4px;
+}
+
+.ghost{
+margin:10px;
+padding:12px;
+border-radius:14px;
+background:var(--card);
+}
+
+.top{
+border:2px solid gold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header"> Phasmo Tracker Tool</div>
+
+<div class="section">
+<div>🔍 証拠</div>
+<div class="filters" id="ev"></div>
+</div>
+
+<div class="section">
+<div>⚡ 速度</div>
+<div class="filters" id="speed"></div>
+</div>
+
+<div class="section">
+  正気度 (%)
+<input type="number" id="sanity" value="50">
+</div>
+
+<div class="section">
+⏱ ハント回数
+<input type="number" id="huntCount" value="0">
+</div>
+
+<div class="section">
+⚡ ハント間隔（秒）
+<input type="number" id="huntInterval" value="60">
+</div>
+
+<div id="ghostList"></div>
+
+<script src="app.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>
